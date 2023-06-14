@@ -1,0 +1,891 @@
+ 
+ 
+
+
+   
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+<title>국회입법조사처</title>
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="icon" href="/favicon.png" />
+<link rel="stylesheet" type="text/css" href="/css/2020/layout.css"/>
+<link rel="stylesheet" type="text/css" href="/css/2020/sub.css"/>
+<link rel="stylesheet" type="text/css" href="/css/2020/respon.css"/>
+
+
+
+
+
+<script type="text/javascript" src="/js/2020/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/js/2020/bx_slider.js"></script>
+<script type="text/javascript" src="/js/2020/js.js"></script>
+<script type="text/javascript" src="/js/2020/customer.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
+
+<script>
+
+var glnbInnerIpCheck = false;
+
+
+
+
+
+ $(document).ready(function() {
+  
+    	 $("#gnb_sns").on("mouseenter focus",  function() {  //alert(2);
+    			$(".gnb_sns_link").slideDown(300);
+    		        na_sns();
+    	 });
+    	 $(".gnb_sns").on("mouseleave",  function() {
+    			$(".gnb_sns_link").stop().slideUp(300);
+    		        //setTimeout(function() { 
+    		            // $(".gnb_sns_link ul, .gnb_sns_link p").remove();
+    	          //},300);
+    	 });
+
+});
+function goSns(type){
+	var url = "";
+	var id  = "gnbhead";
+	 
+	 
+	        if(type != 'rss'){
+	        	if ( glnbInnerIpCheck ) {
+	            	alert("인터넷망에서 접속가능합니다.");
+	            	return;
+	        	}
+	        }
+	        
+	        if(type == 'facebook'){ 
+	        	url = "https://www.facebook.com/NationalAssemblyROK";
+	        }else if (type == 'you'){
+	        	url = "https://www.youtube.com/channel/UCsWa6xl7KxOolVhROUJ4Ghw";
+	        }else if (type == 'tw'){
+	        	url = "https://twitter.com/news_NA";
+	        }else if (type == 'ins'){	
+	        	url = "https://www.instagram.com/theassembly_kr/";
+	        }else if (type == 'rss'){	
+	        	url = "https://www.assembly.go.kr/portal/rss/rss/searchRss.do?menuNo=600251";
+	        }
+	        
+	        if ( url != "" )  {
+	            var winid = window.open(url, id);
+	            winid.focus();
+	        }
+}
+function getNarsInfo(){
+	//URL1 ,brdSeq1, cmsCd1, pType1, check
+	
+		
+	$.ajax({  
+		url:"https://www.assembly.go.kr/portal/api/periodInfo.do"
+		,async: false
+	}).then(function(data){    
+	 $(".ga00").find("a").attr("href",data.url);   
+		$(".ga00").find("a:eq(0)").append(data.sessNm);
+		
+		//alert($(".ga00").html());
+		//,crossDomain:true
+		//,dataType:"jsonp"
+		//,type:"POST"
+		//,jsonpCallback: "jsonnp_callback"
+		//,data:data
+		//,error : function(request, status, error){
+    	//	alert("GNB 연동이 실패했습니다.");
+    		
+   		//},
+   		//success : function(response, status, request){
+        //    alert(1); //alert(response);
+        //}
+	});
+}
+
+</script>
+
+
+</head>
+
+<body onload="getNarsInfo()">
+
+<ul id="skipNavi">
+	<li><a href="#content">본문 바로가기</a></li>
+	<li><a href="#topMenu">주메뉴 바로가기</a></li>
+</ul>
+<div id="wrap">  
+   <!-- GNB -->
+    <div class="gnb_m">
+        <div>
+            <ul class="gnb_assembly">
+                <li class="ga00"><a href="1212" target="_blank" title="새창"></a></li> 
+                <li class="ga01"><a href="https://www.assembly.go.kr/portal/pop/popInfoService.do"  target="_blank"  title="새창">국회정보나침반</a></li>
+                         <li class="ga02"><a href="https://www.assembly.go.kr/portal/cnts/cntsCont/dataA.do?cntsDivCd=NAAS&menuNo=600137" target="_blank"  title="새창">국회의원 검색</a></li>
+            </ul>
+            <div class="gnb_util">
+                <ul class="gnb_menu">
+                   <!-- <li class="bl0"><a href="/index.do">Home</a></li>class  안보임 m_none  -->
+                     
+                  
+                </ul>
+                <div class="gnb_sns">
+                    <a href="" id="gnb_sns" >국회SNS</a>
+                    <div class="gnb_sns_link">
+                        <ul>
+                            <li><a class="icon_glnb_facebook" id="link_glnb_facebook" href="javascript:goSns('facebook');"   title="새창열림_페이스북">페이스북</a></li>
+                            <li><a class="icon_glnb_youtube" id="link_glnb_youtube" href="javascript:goSns('you');"   title="새창열림_유튜브">유튜브</a></li>
+                            <li><a class="icon_glnb_twitter" id="link_glnb_twitter" href="javascript:goSns('tw');"   title="새창열림_트위터">트위터</a></li>
+                            <li><a class="icon_glnb_insta" id="link_glnb_insta" href="javascript:goSns('ins');"    title="새창열림_인스타그램">인스타그램</a></li>
+                            <li><a class="icon_glnb_rss" id="link_glnb_rss" href="javascript:goSns('rss');"  title="새창열림_RSS">RSS</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //GNB -->
+	<div class="header">
+		<div class="hd-tp">
+			<div class="wid">
+				<h1><a href="/index.do"><img src="/images/2020/logo.png" alt="국회입법조사처"></a></h1>
+				<div class="ht-zm"><!--
+					<a href="javascript:vbm_plus();"><img src="/images/2020/zmic_g1.png" alt="글자 확대"></a>
+					<a href="javascript:vbm_reset();"><img src="/images/2020/zmic_g2.png" alt="기본 글자크기"></a>
+					<a href="javascript:vbm_minus();"><img src="/images/2020/zmic_g3.png" alt="글자 축소"></a>
+				--></div>
+			</div>
+		</div>
+		<div class="hd-bm">
+			<div class="mbx-sdw">
+				<div class="wid">
+					<div class="mo-mbt">
+						<a href="#n" class="mm-btn"><em>메뉴</em><span></span></a>
+					</div>
+					<div class="menu-box">
+						<ul id="topMenu" class="depth1">
+							<li><a href="/report/list.do?cmsCode=CM0043">연 구</a>
+								<ul class="depth2 jqheigt">
+									<li><a href="/report/list.do?cmsCode=CM0043">연구 보고서</a></li>
+									<li><a href="/report/list.do?cmsCode=CM0190">NARS info</a></li>
+									<li><a href="/report/list.do?cmsCode=CM0008">세미나∙간담회 자료</a></li>
+									<li><a href="/report/list.do?cmsCode=CM0010">정책연구 용역</a></li>
+									<li><a href="/report/list.do?cmsCode=CM0007">학술지 (입법과 정책)</a></li>
+								</ul>
+							</li>
+							<li><a href="/event/list.do?cmsCode=CM0032">행 사</a>
+								<ul class="depth2 jqheigt">
+									<li><a href="/event/list.do?cmsCode=CM0032">세미나</a></li>
+									<li><a href="/event/list.do?cmsCode=CM0033">간담회</a></li>
+								    <li><a href="/event/list.do?cmsCode=CM0186">시선과 논단</a></li>
+									<li><a href="/event/list.do?cmsCode=CM0057">기타</a></li>
+								</ul>
+							</li>
+							<li><a href="/partin/proposal/list.do?cmsCode=CM0030">참 여</a>
+								<ul class="depth2 jqheigt">
+									<li><a href="/partin/proposal/list.do?cmsCode=CM0030">참여마당</a></li>
+									<li><a href="/partin/faq/list.do?cmsCode=CM0058">자주하는 질문</a></li>
+									<li><a href="/partin/journal/intro.do">입법과 정책 학술지</a></li>
+								</ul>
+							</li>
+							<li><a href="/news/list.do?cmsCode=CM0025">소 식</a>
+								<ul class="depth2 jqheigt">
+									<li><a href="/news/list.do?cmsCode=CM0025">공지사항</a></li>
+									<li><a href="/news/list.do?cmsCode=CM0028">채용정보</a></li>
+									<li><a href="/news/list.do?cmsCode=CM0046">NARS 소식</a></li>
+									<li><a href="/news/list.do?cmsCode=CM0021">뉴스레터</a></li>
+									<li><a href="/news/list.do?cmsCode=CM0026">보도자료</a></li>
+									<li><a href="/news/list.do?cmsCode=CM0027">언론보도상황</a></li>
+									<li><a href="/news/list.do?cmsCode=CM0061">팝업존</a></li>
+								</ul>
+							</li>
+							<li><a href="/info/processResearch.do">정 보</a>
+								<ul class="depth2 jqheigt">
+									<li><a href="/info/processResearch.do">의정지원</a></li>
+									<li><a href="/info/internationalSeminar.do">국제세미나</a></li>
+									<li><a href="https://open.assembly.go.kr/portal/exposeInfo/guideOpnInfoPage.do" target="_blank" title="새창에서 열림">정보공개청구</a></li>
+									<li><a href="https://open.assembly.go.kr/portal/data/service/selectServicePage.do/O6JXFI0011292O12073" target="_blank" title="새창에서 열림">업무추진비</a></li>
+									<li><a href="/info/law/list.do?cmsCode=CM0029">관계법규</a></li>
+								</ul>
+							</li>
+							<li><a href="/intro/greetings.do">소 개</a>
+								<ul class="depth2 jqheigt">
+									<li><a href="/intro/greetings.do">인사말</a></li>
+									<li><a href="/intro/missionAndHistory.do">국회입법조사처 소개</a></li>
+									<li><a href="/intro/organization.do">조직 · 인력</a></li>
+									<li><a href="/intro/location.do">찾아오시는 길</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+
+					<ul class="ht-lgs">
+						<li><a href="#n" class="search-sw"><span>검색</span></a></li>
+						<li><a href="/eng/index.do?sgrp=S02">English</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="pcm-bg"><p class="jqheigt" style="min-height:237px;"></p></div>
+		</div>
+		<div class="hd-search">
+			<div class="wid">
+				<div class="hd-srtg">
+					<form action="javascript:unifiedSearch();">
+						<input type="text" id="usKeyword" title="검색어 입력" class="search-ipt">
+						<button type="submit" class="search-bt">검   색</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>      
+  
+<script src="/js/2020/web-animations.min.js"></script> 
+<script src="/js/2020/muuri.min.js"></script>
+  
+  
+ 
+	<a href="javascript: " id="content" class="hidden">본문 시작</a>
+	<div class="main-con">
+		<div class="wid">
+			<div class="grid">
+
+	
+	
+	
+				<div class="item w2">
+					<div class="item-content">
+						<div class="mcc-bk">
+		
+		
+							<a href="/news/view.do?cmsCode=CM0061&amp;brdSeq=42167">
+		
+		
+								<p class="img-box"><img src="/_upload/attFile/main/20230601141120_portf.png" alt="NARS 연구보고서 기획전 (인공지능)" /></p>
+		
+		
+		
+		
+		
+		
+		
+							</a>
+						</div>
+					</div>
+				</div>
+	
+
+	
+	
+	
+				<div class="item w2">
+					<div class="item-content">
+						<div class="mcc-bk">
+		
+		
+							<a href="/intro/missionAndHistory.do" target="_blank" title="새창에서 열림">
+		
+		
+								<p class="img-box"><img src="/_upload/attFile/main/20230601103348_wivui.png" alt="슬로건" /></p>
+		
+		
+		
+		
+		
+		
+		
+							</a>
+						</div>
+					</div>
+				</div>
+	
+
+	
+	
+	
+				<div class="item">
+					<div class="item-content">
+						<div class="mcc-bk">
+		
+		
+							<a href="https://www.nars.go.kr/intro/missionAndHistory.do">
+		
+		
+								<p class="img-box"><img src="/_upload/attFile/main/20220824114820_fkhgz.png" alt="국회입법조사처 소개" /></p>
+		
+		
+		
+		
+		
+		
+		
+							</a>
+						</div>
+					</div>
+				</div>
+	
+
+	
+	
+	
+				<div class="item">
+					<div class="item-content">
+						<div class="mcc-bk">
+		
+		
+							<a href="/report/view.do?cmsCode=CM0073&amp;brdSeq=42233">
+		
+		
+								<p class="img-box"><img src="/_upload/attFile/main/20230609100607_avokf.png" alt="NARS Brief 제8호 국정감사 및 국회 의정활동 지원을 위한 「2023 행정서비스 현장 실태조사」" /></p>
+		
+		
+		
+		
+		
+		
+		
+							</a>
+						</div>
+					</div>
+				</div>
+	
+
+	
+	
+	
+				<div class="item">
+					<div class="item-content">
+						<div class="mcc-bk">
+		
+		
+							<a href="/report/view.do?cmsCode=CM0163&amp;brdSeq=42258">
+		
+		
+								<p class="img-box"><img src="/_upload/attFile/main/20230613091150_ugroc.png" alt="미국의 산불대응 기술 현대화 정책 및 시사점" /></p>
+		
+		
+								<div class="tx-box">
+		
+		
+									<span class="cls">외국 입법&#xB7;정책 분석</span>
+		
+		
+									<h4 class="ti">미국의 산불대응 기술 현대화 정책 및 시사점</h4>
+		
+		
+									<p class="inf">미국의 산불관리에 있어 가장 중요한 목표 중의 하나는 환경과 지역사회...</p>
+		
+		
+									<span class="dt">2023.06.13</span>
+		
+		
+								</div>
+		
+							</a>
+						</div>
+					</div>
+				</div>
+	
+
+	
+	
+	
+				<div class="item">
+					<div class="item-content">
+						<div class="mcc-bk">
+		
+		
+							<a href="https://www.nars.go.kr/front/new/202305/newsletter_main.html" target="_blank" title="새창에서 열림">
+		
+		
+								<p class="img-box"><img src="/_upload/attFile/main/20230601160718_ymajc.png" alt="뉴스레터" /></p>
+		
+		
+		
+		
+		
+		
+		
+							</a>
+						</div>
+					</div>
+				</div>
+	
+
+	
+	
+	
+				<div class="item">
+					<div class="item-content">
+						<div class="mcc-bk">
+		
+		
+							<a href="/report/view.do?cmsCode=CM0007&amp;brdSeq=41913">
+		
+		
+								<p class="img-box"><img src="/_upload/attFile/main/20230428090450_hgmfj.jpg" alt="입법과 정책" /></p>
+		
+		
+								<div class="tx-box">
+		
+		
+									<span class="cls">입법과정책</span>
+		
+		
+									<h4 class="ti">입법과 정책</h4>
+		
+		
+									<p class="inf">「임시의정원 여성의원의 시기별 일고찰」 외 7건</p>
+		
+		
+									<span class="dt">2023.04.30</span>
+		
+		
+								</div>
+		
+							</a>
+						</div>
+					</div>
+				</div>
+	
+
+	
+	
+	
+				<div class="item">
+					<div class="item-content">
+						<div class="mcc-bk">
+		
+		
+							<a href="/news/view.do?cmsCode=CM0035&amp;brdSeq=41737">
+		
+		
+								<p class="img-box"><img src="/_upload/attFile/main/20230331090715_tvabx.png" alt="국회입법조사처보 2023 봄호" /></p>
+		
+		
+		
+		
+		
+		
+		
+							</a>
+						</div>
+					</div>
+				</div>
+	
+
+	
+	
+	
+				<div class="item">
+					<div class="item-content">
+						<div class="mcc-bk">
+		
+		
+							<a href="/report/view.do?cmsCode=CM0190&amp;brdSeq=42183">
+		
+		
+								<p class="img-box"><img src="/_upload/attFile/main/20230602164844_pwgbm.png" alt="학교폭력 가해학생 분리조치 집행 지연의 쟁점과 과제" /></p>
+		
+		
+		
+		
+		
+		
+		
+							</a>
+						</div>
+					</div>
+				</div>
+	
+
+	
+	
+	
+				<div class="item">
+					<div class="item-content">
+						<div class="mcc-bk">
+		
+		
+							<a href="/report/view.do?cmsCode=CM0018&amp;brdSeq=42259">
+		
+		
+								<p class="img-box"><img src="/_upload/attFile/main/20230613091122_ymuon.png" alt="간호법 제정 논의의 발전 방향" /></p>
+		
+		
+								<div class="tx-box">
+		
+		
+									<span class="cls">이슈와논점</span>
+		
+		
+									<h4 class="ti">간호법 제정 논의의 발전 방향</h4>
+		
+		
+									<p class="inf">현재 간호법 제정을 둘러싼 간호계와 의료계 등 직역 간 논란·갈등 속에...</p>
+		
+		
+									<span class="dt">2023.06.13</span>
+		
+		
+								</div>
+		
+							</a>
+						</div>
+					</div>
+				</div>
+	
+
+	
+	
+	
+				<div class="item">
+					<div class="item-content">
+						<div class="mcc-bk">
+		
+		
+							<a href="/report/view.do?cmsCode=CM0018&amp;brdSeq=42249">
+		
+		
+								<p class="img-box"><img src="/_upload/attFile/main/20230612091215_yoalu.png" alt="정당 현수막 현황과 개선방안" /></p>
+		
+		
+								<div class="tx-box">
+		
+		
+									<span class="cls">이슈와논점</span>
+		
+		
+									<h4 class="ti">정당 현수막 현황과 개선방안</h4>
+		
+		
+									<p class="inf">정당 활동의 자유를 폭넓게 보장하고자 정당 현수막에는 「옥외광고물법」...</p>
+		
+		
+									<span class="dt">2023.06.12</span>
+		
+		
+								</div>
+		
+							</a>
+						</div>
+					</div>
+				</div>
+	
+
+	
+	
+	
+				<div class="item">
+					<div class="item-content">
+						<div class="mcc-bk">
+		
+		
+							<a href="/report/view.do?cmsCode=CM0073&amp;brdSeq=41053">
+		
+		
+								<p class="img-box"><img src="/_upload/attFile/main/20221230091109_wdzcl.PNG" alt="2023 국회입법조사처 올해의 이슈" /></p>
+		
+		
+								<div class="tx-box">
+		
+		
+		
+									<h4 class="ti">2023 국회입법조사처 올해의 이슈</h4>
+		
+		
+		
+									<span class="dt">2022.12.30</span>
+		
+		
+								</div>
+		
+							</a>
+						</div>
+					</div>
+				</div>
+	
+
+	
+	
+	
+				<div class="item">
+					<div class="item-content">
+						<div class="mcc-bk">
+		
+		
+							<a href="/news/view.do?cmsCode=CM0028&amp;brdSeq=42206">
+		
+		
+		
+								<div class="tx-box">
+		
+		
+									<span class="cls">채용정보</span>
+		
+		
+									<h4 class="ti">2023년도 국회입법조사처 공무원(일반임기제 6급, 상사법&#xB7;법원 분야) 채용 서류전형 및 면접 일정 공고</h4>
+		
+		
+		
+		
+								</div>
+		
+							</a>
+						</div>
+					</div>
+				</div>
+	
+
+	
+	
+	
+				<div class="item">
+					<div class="item-content">
+						<div class="mcc-bk">
+		
+		
+							<a href="/report/view.do?cmsCode=CM0048&amp;brdSeq=41001">
+		
+		
+								<p class="img-box"><img src="/_upload/attFile/main/20221227154516_rworu.PNG" alt="2022년도 입법 및 정책 제안대회 수상작품집" /></p>
+		
+		
+		
+		
+		
+		
+		
+							</a>
+						</div>
+					</div>
+				</div>
+	
+
+	
+	
+	
+				<div class="item">
+					<div class="item-content">
+						<div class="mcc-bk">
+		
+		
+							<a href="https://www.nars.go.kr/report/list.do?categoryId=&amp;cmsCode=CM0019&amp;searchType=TITLE&amp;searchKeyword=">
+		
+		
+								<p class="img-box"><img src="/_upload/attFile/main/20220802111443_hreyr.png" alt="2022 국정감사 이슈 분석 제1권_국회운영위원회， 법제사법위원회" /></p>
+		
+		
+		
+		
+		
+		
+		
+							</a>
+						</div>
+					</div>
+				</div>
+	
+
+	
+	
+	
+				<div class="item">
+					<div class="item-content">
+						<div class="mcc-bk">
+		
+		
+							<a href="/news/view.do?cmsCode=CM0009&amp;brdSeq=39275">
+		
+		
+								<p class="img-box"><img src="/_upload/attFile/main/20220603090426_cgzfd.png" alt="2021 국회입법조사처 연차보고서" /></p>
+		
+		
+		
+		
+		
+		
+		
+							</a>
+						</div>
+					</div>
+				</div>
+	
+
+	
+	
+	
+				<div class="item">
+					<div class="item-content">
+						<div class="mcc-bk">
+		
+		
+							<a href="/report/list.do?cmsCode=CM0043">
+		
+		
+								<p class="img-box"><img src="/_upload/attFile/main/20230601103436_rnwfg.png" alt="최신보고서" /></p>
+		
+		
+		
+		
+		
+		
+		
+							</a>
+						</div>
+					</div>
+				</div>
+	
+
+	
+	
+	
+				<div class="item">
+					<div class="item-content">
+						<div class="mcc-bk">
+		
+		
+							<a href="/info/internationalSeminar.do">
+		
+		
+								<p class="img-box"><img src="/images/2020/mc_img3.jpg" alt="의회조사기구 국제세미나" /></p>
+		
+		
+		
+		
+		
+		
+		
+							</a>
+						</div>
+					</div>
+				</div>
+	
+
+	
+	
+	
+				<div class="item">
+					<div class="item-content">
+						<div class="mcc-bk">
+		
+		
+							<a href="https://www.nars.go.kr/news/list.do?cmsCode=CM0026">
+		
+		
+								<p class="img-box"><img src="/_upload/attFile/main/20230327105252_kjorb.PNG" alt="보도자료" /></p>
+		
+		
+		
+		
+		
+		
+		
+							</a>
+						</div>
+					</div>
+				</div>
+	
+
+			</div>
+		</div>
+	</div>
+
+
+ 
+
+ 
+
+<script type="text/javascript">
+function subscribe() {
+	var mail = document.mailingForm;
+	var name = mail.name.value;
+	var email = mail.email.value;
+	 
+	if (name == "") {
+		alert("이름을 입력해 주세요.");
+		return;
+	} else if (email == "") {
+		alert("이메일을 입력해 주세요.");
+		return;
+	} else {	//이메일 유효성검사
+		var regExp = /([a-zA-Z0-9]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+		if(!regExp.test(email)) {
+			alert("정상적인 이메일 형식이 아닙니다. 다시 입력해 주세요.");
+			return ;
+		}
+	}
+	
+	//공통 메일등록
+	$.ajax({
+		url:'/queueSubscriber.do',
+		data: {'email':email, 'langCode':'K'},
+		dataType: 'text',
+		type:'post',
+		async:false,
+		dataType:'text',
+		success: function(data) {
+			$("#name").val("");
+			$("#email").val("");
+			
+			if (data == "2")
+				alert("정상 처리되었습니다.");
+			else
+				alert("처리 과정에 오류가 발생하였습니다.\n다음에 다시 시도하시기 바랍니다.");
+		}
+	});
+}
+</script>
+
+	<div class="footer">
+		<div class="foo-tp">
+			<div class="wid">
+				<ul class="foot-nlk">
+					<li><a href="javascript:openCharterWindow();" title="새창열림">윤리헌장</a></li>
+					<li><a href="/privacy.do">개인정보처리방침</a></li>
+					<li><a href="/copyright.do">저작권정책</a></li>
+					<li><a href="/sitemap.do">사이트맵</a></li>
+				</ul>
+   
+				<ul class="foot-sns">
+					<li><a href="https://www.facebook.com/nars.go.kr/" target="_blank"><img src="/images/2020/foo_sns1.jpg" alt="페이스북 새창에서 열림"></a></li>
+					<li><a href="https://twitter.com/@nars_go_kr" target="_blank"><img src="/images/2020/foo_sns2.jpg" alt="트위터 새창에서 열림"></a></li>
+					<li><a href="https://instagram.com/nars.go.kr" target="_blank"><img src="/images/2020/foo_sns3.jpg" alt="인스타그램 새창에서 열림"></a></li>
+				</ul>
+
+			</div>
+		</div>
+		<div class="foo-bm">
+			<div class="wid">
+				<div class="fb-lf">
+					<div class="foot-logo">
+						<a href="#n"><img src="/images/2020/foo_logo.jpg" alt="국회입법조사처"></a>
+					</div>
+					<div class="foot-lc">
+						<p>07233 서울시 영등포구 의사당대로 1 (여의도동) <span>1, Uisadang-daero, Yeongdeungpo-gu, Seoul, Korea</span> 대표전화 : 02) 6788-4510</p>
+						<p class="cpr">COPYRIGHT © NARS ALL RIGHTS RESERVED</p>
+					</div>
+				</div> 
+				<div class="fb-rt">
+					<div class="wa-mk">
+						<a href="http://www.wa.or.kr/board/list.asp?BoardID=0006" target="_blank" title="새창열림"><img src="/images/2020/wa_mark_big.png" title="접근성 품질인증 마크" alt="접근성 품질인증 마크" width="130px"></a>
+					</div>
+					<dl class="foot-nwap">
+						<dt>국회입법조사처 소식 구독 신청</dt>
+						<dd>
+							<form name="mailingForm" method="post">
+								<input type="text" id="email" name="email" title="이메일 입력" placeholder="사용하는 이메일을 입력하세요">
+								<button type="button" onclick="javascript:subscribe();">등  록</button>
+							</form>
+						</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+</body>
+</html>
